@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  api_node:
+    build: .
+    container_name: task_app
+    working_dir: /app
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/dist
+    ports:
+      - "3000:3000"
+    env_file: ./config.env
+    # depends_on:
+    #   - db
+    command: "npm run start:prod"
+
+  db:
+    image: mysql:8.0
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./dump-sql:/docker-entrypoint-initdb.d/
+    ports:
+      - "3306:3306"
+
+volumes:
+  db_data:
