@@ -6,7 +6,7 @@ import { login, signUp } from "../user/userController";
 
 const router: Router = Router();
 
-router.post('/api/createUser', signUp);
-router.post('/api/login', login);
+router.post('/api/user/createUser', signUp);
+router.post('/api/user/login', login);
 
 export default router;

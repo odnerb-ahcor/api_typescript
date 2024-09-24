@@ -7,6 +7,6 @@ const router: Router = Router();
 
 router.use(authMiddleware);
 
-router.get('/api/users', listUsers);
+router.get('/api/user/list', listUsers);
 
 export const routerProtected = router;
